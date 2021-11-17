@@ -3,10 +3,7 @@
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "postinstall": "go-npm install",
-    "preuninstall": "go-npm uninstall"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/varbrad/npm-go-test.git"
@@ -19,7 +16,7 @@
   },
   "homepage": "https://github.com/varbrad/npm-go-test#readme",
   "dependencies": {
-    "go-npm": "^0.1.9"
+    "@gzuidhof/go-npm": "^0.1.13"
   },
   "goBinary": {
     "name": "npm-go-test",
