@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "go-npm install",
+    "preuninstall": "go-npm uninstall"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/varbrad/npm-go-test/issues"
   },
-  "homepage": "https://github.com/varbrad/npm-go-test#readme"
+  "homepage": "https://github.com/varbrad/npm-go-test#readme",
+  "dependencies": {
+    "go-npm": "^0.1.9"
+  },
+  "goBinary": {
+    "name": "npm-go-test",
+    "path": "./bin",
+    "url": "https://github.com/varbrad/npm-go-test/releases/download/v{{version}}/npm-go-test_{{version}}_{{platform}}_{{arch}}.tar.gz"
+  }
 }
