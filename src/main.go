@@ -1,22 +1,45 @@
 package main
 
 import (
-	"log"
-	"math/rand"
-	"time"
+	"errors"
+	"flag"
+	"fmt"
+	"os"
 )
 
-func GeneratePortNumber() int {
-	rand.Seed(time.Now().UnixNano())
+type inputFile struct {
+	filepath  string
+	seperator string
+	pretty    bool
+}
 
-	min := 1000
-	max := 99999
+func getFileData() (inputFile, error) {
+	if len(os.Args) < 2 {
+		return inputFile{}, errors.New("a filepath argument is required")
+	}
 
-	port := rand.Intn(max-min+1) + min
+	seperator := flag.String("seperator", "comma", "Column seperator")
+	pretty := flag.Bool("pretty", false, "Generate pretty JSON")
 
-	return port
+	flag.Parse()
+
+	fileLocation := flag.Arg(0)
+
+	if !(*seperator == "comma" || *seperator == "semicolon") {
+		return inputFile{}, errors.New("invalid seperator - only 'comma' or 'semicolon' are supported")
+	}
+
+	return inputFile{fileLocation, *seperator, *pretty}, nil
 }
 
 func main() {
-	log.Println("Random Port:", GeneratePortNumber())
+	fileData, err := getFileData()
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	fmt.Println("File Data", fileData)
+
 }
